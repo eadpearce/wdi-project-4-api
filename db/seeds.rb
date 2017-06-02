@@ -6,13 +6,20 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.destroy_all
-Prompt.destroy_all
-Tag.destroy_all
+# User.destroy_all
+# Prompt.destroy_all
+# Tag.destroy_all
+# Fill.destroy_all
 
 klyn = User.create!({
   username: "klyn",
   email: "klyn@klyn.com",
+  password: "password",
+  password_confirmation: "password"
+  })
+kenji = User.create!({
+  username: "kenji",
+  email: "kenji@kenji.com",
   password: "password",
   password_confirmation: "password"
   })
@@ -28,3 +35,10 @@ tag3 = Tag.create!({ name: "Gen" })
 prompt.tags << tag1
 prompt.tags << tag2
 prompt.tags << tag3
+
+fill = Fill.create!({
+  prompt_id: prompt.id,
+  user_id: kenji.id,
+  body: "This is a fill"
+  })
+prompt.fills << fill
