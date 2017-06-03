@@ -48,6 +48,6 @@ class PromptsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def prompt_params
-      params.require(:prompt).permit(:title, :body)
+      params.require(:prompt).permit(:title, :body, :tagged_as)
     end
 end

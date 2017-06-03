@@ -16,6 +16,7 @@ class TagsController < ApplicationController
   # POST /tags
   def create
     @tag = Tag.new(tag_params)
+    @tag = Tag.find_or_create_by(name: @tag.name)
 
     if @tag.save
       render json: @tag, status: :created, location: @tag
