@@ -29,9 +29,9 @@ prompt = Prompt.create!({
   user_id: klyn.id
   })
 klyn.prompts << prompt
-tag1 = Tag.create!({ name: "FFXV" })
-tag2 = Tag.create!({ name: "Modern AU" })
-tag3 = Tag.create!({ name: "Gen" })
+tag1 = Tag.create!({ name: "ffxv" })
+tag2 = Tag.create!({ name: "modern au" })
+tag3 = Tag.create!({ name: "gen" })
 prompt.tags << tag1
 prompt.tags << tag2
 prompt.tags << tag3

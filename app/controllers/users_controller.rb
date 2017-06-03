@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    @user = User.find_by(username: params[:username])
     render json: @user
   end
 
@@ -41,7 +42,7 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find_by(username: params[:username])
     end
 
     # Only allow a trusted parameter "white list" through.
