@@ -16,6 +16,8 @@ class FillsController < ApplicationController
   # POST /fills
   def create
     @fill = Fill.new(fill_params)
+    # assign the current logged in user as the fill's author
+    @fill.user_id = @current_user.id
 
     if @fill.save
       render json: @fill, status: :created, location: @fill

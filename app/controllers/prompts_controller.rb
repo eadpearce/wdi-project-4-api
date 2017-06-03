@@ -16,6 +16,8 @@ class PromptsController < ApplicationController
   # POST /prompts
   def create
     @prompt = Prompt.new(prompt_params)
+    # assign the current logged in user as the prompt's author
+    @prompt.user_id = @current_user.id
 
     if @prompt.save
       render json: @prompt, status: :created, location: @prompt
@@ -46,6 +48,6 @@ class PromptsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def prompt_params
-      params.require(:prompt).permit(:title, :body, :user_id)
+      params.require(:prompt).permit(:title, :body)
     end
 end
