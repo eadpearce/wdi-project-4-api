@@ -16,10 +16,6 @@ class TagsController < ApplicationController
   # POST /tags
   def create
     @tag = Tag.new(tag_params)
-    # change to lowercase to avoid duplicates with odd cases
-    @tag.name.downcase!
-    # avoid creating duplicates with the same name 
-    @tag = Tag.find_or_create_by(name: @tag.name)
 
     if @tag.save
       render json: @tag, status: :created, location: @tag

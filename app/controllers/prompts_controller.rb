@@ -18,8 +18,17 @@ class PromptsController < ApplicationController
     @prompt = Prompt.new(prompt_params)
     # assign the current logged in user as the prompt's author
     @prompt.user_id = @current_user.id
+    # separate the prompt's tags by commas
+    prompt_tags = @prompt.tagged_as.strip.split(',')
 
     if @prompt.save
+      for tag in prompt_tags
+        # change to lowercase to avoid duplicates with odd cases
+        tag.downcase!
+        # avoid creating duplicates with the same name
+        new_tag = Tag.find_or_create_by(name: tag)
+        @prompt.tags << new_tag
+      end
       render json: @prompt, status: :created, location: @prompt
     else
       render json: @prompt.errors, status: :unprocessable_entity
