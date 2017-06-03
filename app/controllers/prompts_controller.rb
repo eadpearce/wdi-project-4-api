@@ -8,6 +8,15 @@ class PromptsController < ApplicationController
     render json: @prompts
   end
 
+  # get all fills for a certain user
+  def prompts_user
+    # find the user by username
+    user = User.find_by(username: params[:user_id])
+    # find the prompts by user.id
+    @prompts = Prompt.where(user_id: user.id)
+    render json: @prompts
+  end
+
   # GET /prompts/1
   def show
     render json: @prompt

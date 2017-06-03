@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1
   def show
     @user = User.find_by(username: params[:username])
-    render json: @user
+    render json: @user, include: "prompts,prompts.fills,fills,fills.prompt"
   end
 
   # POST /users

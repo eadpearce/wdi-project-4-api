@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :tags
     resources :prompts
     resources :users, param: :username
+    get 'users/:user_id/fills', to: 'fills#fills_user'
+    get 'users/:user_id/prompts', to: 'prompts#prompts_user'
     post 'register', to: 'authentications#register'
     post 'login',    to: 'authentications#login'
   end

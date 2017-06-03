@@ -8,6 +8,15 @@ class FillsController < ApplicationController
     render json: @fills
   end
 
+  # get all fills for a certain user
+  def fills_user
+    # find the user by username
+    user = User.find_by(username: params[:user_id])
+    # find the fills by user.id
+    @fills = Fill.where(user_id: user.id)
+    render json: @fills
+  end
+
   # GET /fills/1
   def show
     render json: @fill

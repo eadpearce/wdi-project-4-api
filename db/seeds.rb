@@ -36,9 +36,17 @@ prompt.tags << tag1
 prompt.tags << tag2
 prompt.tags << tag3
 
-fill = Fill.create!({
+fill1 = Fill.create!({
   prompt_id: prompt.id,
   user_id: kenji.id,
+  title: "FFXV Modern AU",
   body: "This is a fill"
   })
-prompt.fills << fill
+fill2 = Fill.create!({
+  prompt_id: prompt.id,
+  user_id: kenji.id,
+  title: "FFXV Modern AU, pt.2",
+  body: "This is another fill"
+  })
+prompt.fills << fill1
+prompt.fills << fill2

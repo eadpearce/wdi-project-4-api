@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20170602151147) do
   create_table "fills", force: :cascade do |t|
     t.bigint "prompt_id"
     t.bigint "user_id"
+    t.string "title"
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,6 +52,7 @@ ActiveRecord::Schema.define(version: 20170602151147) do
     t.string "email"
     t.text "image"
     t.string "password_digest"
+    t.text "about"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
