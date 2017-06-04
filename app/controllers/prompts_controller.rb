@@ -29,6 +29,10 @@ class PromptsController < ApplicationController
     @prompt.user_id = @current_user.id
     # separate the prompt's tags by commas
     prompt_tags = @prompt.tagged_as.strip.split(',')
+    for tag in prompt_tags
+      tag.strip!
+    end
+    puts "PROMPT TAGS: #{prompt_tags}"
 
     if @prompt.save
       for tag in prompt_tags
