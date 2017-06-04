@@ -17,6 +17,14 @@ class PromptsController < ApplicationController
     render json: @prompts
   end
 
+  def prompts_for_tag
+    # find the user by username
+    tag = Tag.find_by(id: params[:tag_id])
+    # find the prompts by user.id
+    @prompts = tag.prompts
+    render json: @prompts
+  end
+
   # GET /prompts/1
   def show
     render json: @prompt
@@ -32,7 +40,6 @@ class PromptsController < ApplicationController
     for tag in prompt_tags
       tag.strip!
     end
-    puts "PROMPT TAGS: #{prompt_tags}"
 
     if @prompt.save
       for tag in prompt_tags
