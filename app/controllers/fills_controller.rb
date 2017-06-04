@@ -9,11 +9,20 @@ class FillsController < ApplicationController
   end
 
   # get all fills for a certain user
-  def fills_user
+  def fills_for_user
     # find the user by username
     user = User.find_by(username: params[:user_id])
     # find the fills by user.id
     @fills = Fill.where(user_id: user.id)
+    render json: @fills
+  end
+
+  # get all fills for a certain prompt
+  def fills_for_prompt
+    # find the prompt by params
+    prompt = Prompt.find_by(id: params[:prompt_id])
+    # find all fills for this prompt
+    @fills = Fill.where(prompt_id: prompt.id)
     render json: @fills
   end
 
@@ -57,6 +66,6 @@ class FillsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def fill_params
-      params.require(:fill).permit(:prompt_id, :user_id, :body)
+      params.require(:fill).permit(:prompt_id, :user_id, :body, :title)
     end
 end

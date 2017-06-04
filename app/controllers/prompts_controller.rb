@@ -9,7 +9,7 @@ class PromptsController < ApplicationController
   end
 
   # get all fills for a certain user
-  def prompts_user
+  def prompts_for_user
     # find the user by username
     user = User.find_by(username: params[:user_id])
     # find the prompts by user.id
