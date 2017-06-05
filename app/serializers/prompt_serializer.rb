@@ -1,7 +1,7 @@
 class PromptSerializer < ActiveModel::Serializer
-  attributes :id, :title, :body, :date_created, :created_at, :filled, :unfilled
+  attributes :id, :title, :body, :date_created, :created_at, :filled, :unfilled, :tags
   has_one :user
-  has_many :tags
+  # has_many :tags # returns all the nested shit as well 
   has_many :fills
 
   def date_created
@@ -18,6 +18,7 @@ class PromptSerializer < ActiveModel::Serializer
     end
     filled
   end
+
   def unfilled
     if object.fills.length != 0
       unfilled = false
