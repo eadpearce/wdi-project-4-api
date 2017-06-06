@@ -4,7 +4,6 @@ class PromptsController < ApplicationController
   # GET /prompts
   def index
     @prompts = Prompt.all
-
     render json: @prompts
   end
 
@@ -14,7 +13,7 @@ class PromptsController < ApplicationController
     user = User.find_by(username: params[:user_id])
     # find the prompts by user.id
     @prompts = Prompt.where(user_id: user.id)
-    render json: @prompts
+    render json: @prompts, include: ['fills', 'user', 'comments']
   end
 
   def prompts_for_tag
@@ -22,12 +21,12 @@ class PromptsController < ApplicationController
     tag = Tag.find_by(id: params[:tag_id])
     # find the prompts by user.id
     @prompts = tag.prompts
-    render json: @prompts
+    render json: @prompts, include: ['fills', 'user', 'comments']
   end
 
   # GET /prompts/1
   def show
-    render json: @prompt
+    render json: @prompt, include: ['fills', 'user', 'comments']
   end
 
   # POST /prompts

@@ -14,7 +14,7 @@ class FillsController < ApplicationController
     user = User.find_by(username: params[:user_id])
     # find the fills by user.id
     @fills = Fill.where(user_id: user.id)
-    render json: @fills
+    render json: @fills, include: ['user', 'prompt', 'comments.user', 'comments.user.id', 'comments.user.username']
   end
 
   # get all fills for a certain prompt
@@ -23,12 +23,12 @@ class FillsController < ApplicationController
     prompt = Prompt.find_by(id: params[:prompt_id])
     # find all fills for this prompt
     @fills = Fill.where(prompt_id: prompt.id)
-    render json: @fills
+    render json: @fills, include: ['user', 'prompt', 'comments.user', 'comments.user.id', 'comments.user.username']
   end
 
   # GET /fills/1
   def show
-    render json: @fill
+    render json: @fill, include: ['user', 'prompt', 'comments.user', 'comments.user.id', 'comments.user.username']
   end
 
   # POST /fills

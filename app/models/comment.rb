@@ -1,8 +1,7 @@
-class Fill < ApplicationRecord
-  belongs_to :prompt
+class Comment < ApplicationRecord
+  belongs_to :fill, optional: true
+  belongs_to :prompt, optional: true
   belongs_to :user
-  has_and_belongs_to_many :tags
-  has_many :comments
 
   def date_created
     require 'date'

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: MyText
+  fill: one
+  prompt: one
+  user: one
+  parent_id: 1
+
+two:
+  body: MyText
+  fill: two
+  prompt: two
+  user: two
+  parent_id: 1

@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170605132155) do
+ActiveRecord::Schema.define(version: 20170606082823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.bigint "fill_id"
+    t.bigint "prompt_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fill_id"], name: "index_comments_on_fill_id"
+    t.index ["prompt_id"], name: "index_comments_on_prompt_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "fills", force: :cascade do |t|
     t.bigint "prompt_id"
@@ -62,6 +74,9 @@ ActiveRecord::Schema.define(version: 20170605132155) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "comments", "fills"
+  add_foreign_key "comments", "prompts"
+  add_foreign_key "comments", "users"
   add_foreign_key "fills", "prompts"
   add_foreign_key "fills", "users"
   add_foreign_key "prompts", "users"

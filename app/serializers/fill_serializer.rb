@@ -1,8 +1,12 @@
 class FillSerializer < ActiveModel::Serializer
   attributes :id, :body, :title, :date_created, :created_at, :tags
   has_one :prompt
-  has_one :user
-  # has_many :tags
+  belongs_to :user
+  has_many :comments
+
+  # def user
+  #   UserSerializer.new(Fill.user)
+  # end
 
   # def date_created
   #   require 'date'
