@@ -27,7 +27,7 @@ class PromptsController < ApplicationController
 
   # GET /prompts/1
   def show
-    render json: @prompt, include: ['fills', 'user', 'comments']
+    render json: @prompt, include: ['fills', 'user', 'comments', 'comments.user']
   end
 
   # POST /prompts
