@@ -1,5 +1,6 @@
 class PromptsController < ApplicationController
   before_action :set_prompt, only: [:show, :update, :destroy]
+  before_action :authenticate_user!, :except => [:show, :index, :index_by_tag, :index_by_prompt, :index_by_user]
 
   # GET /prompts
   def index
@@ -8,7 +9,7 @@ class PromptsController < ApplicationController
   end
 
   # get all fills for a certain user
-  def prompts_for_user
+  def index_by_user
     # find the user by username
     user = User.find_by(username: params[:user_id])
     # find the prompts by user.id
@@ -16,7 +17,7 @@ class PromptsController < ApplicationController
     render json: @prompts, include: ['fills', 'user', 'comments']
   end
 
-  def prompts_for_tag
+  def index_by_tag
     # find the user by username
     tag = Tag.find_by(id: params[:tag_id])
     # find the prompts by user.id

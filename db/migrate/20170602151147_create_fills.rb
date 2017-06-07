@@ -5,6 +5,7 @@ class CreateFills < ActiveRecord::Migration[5.1]
       t.references :user, foreign_key: true
       t.string :title
       t.text :body
+      t.text :tagged_as
 
       t.timestamps
     end

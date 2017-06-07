@@ -2,6 +2,7 @@ class Comment < ApplicationRecord
   belongs_to :fill, optional: true
   belongs_to :prompt, optional: true
   belongs_to :user
+  validates :body, presence: true
 
   def date_created
     require 'date'

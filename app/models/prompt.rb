@@ -4,4 +4,6 @@ class Prompt < ApplicationRecord
   has_many :comments
   has_many :fills
   attr_accessor :tagged_as
+  validates :title, presence: true
+  validates :body, presence: true
 end
