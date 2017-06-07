@@ -45,6 +45,7 @@ class FillsController < ApplicationController
     @fill.user_id = @current_user.id
     prompt = Prompt.find_by(id: @fill.prompt_id)
     @fill.prompt = prompt
+    @fill.tags << prompt.tags
     puts "FILL: #{@fill.prompt_id}"
     fill_tags = @fill.tagged_as.strip.split(',')
     for tag in fill_tags
@@ -57,7 +58,7 @@ class FillsController < ApplicationController
         tag.downcase!
         # avoid creating duplicates with the same name
         new_tag = Tag.find_or_create_by(name: tag)
-        @fill.tags << new_tag
+        @fill.tags << new_tag unless @fill.tags.include?(new_tag)
       end
       render json: @fill, status: :created, location: @fill
     else

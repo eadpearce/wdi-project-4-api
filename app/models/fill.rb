@@ -1,7 +1,7 @@
 class Fill < ApplicationRecord
   belongs_to :prompt, optional: true
   belongs_to :user
-  has_and_belongs_to_many :tags
+  has_and_belongs_to_many :tags, uniq: true
   has_many :comments
   validates :title, presence: true
   validates :body, presence: true

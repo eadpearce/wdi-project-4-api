@@ -1,5 +1,6 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: [:show, :update, :destroy]
+  before_action :authenticate_user!, :except => [:index]
 
   # GET /tags
   def index
@@ -25,13 +26,13 @@ class TagsController < ApplicationController
   end
 
   # PATCH/PUT /tags/1
-  def update
-    if @tag.update(tag_params)
-      render json: @tag
-    else
-      render json: @tag.errors, status: :unprocessable_entity
-    end
-  end
+  # def update
+  #   if @tag.update(tag_params)
+  #     render json: @tag
+  #   else
+  #     render json: @tag.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   # DELETE /tags/1
   def destroy
