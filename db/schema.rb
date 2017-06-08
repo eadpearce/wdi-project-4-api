@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20170606082823) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
-    t.text "image"
+    t.text "image", default: "/images/cage.jpeg"
     t.string "password_digest"
     t.text "about"
     t.datetime "created_at", null: false
