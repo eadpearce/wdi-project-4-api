@@ -6,6 +6,7 @@ class Fill < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
   attr_accessor :tagged_as
+  attr_accessor :anon
 
   def date_created
     require 'date'

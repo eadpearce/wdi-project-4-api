@@ -12,6 +12,13 @@ Tag.destroy_all
 Fill.destroy_all
 Comment.destroy_all
 
+User.create!({
+  username: "anonymous",
+  email: "anon@anon.com",
+  password: "password",
+  password_confirmation: "password",
+  about: "I am one. I am many."
+  })
 klyn = User.create!({
   username: "klyn",
   email: "klyn@klyn.com",

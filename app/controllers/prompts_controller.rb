@@ -33,8 +33,10 @@ class PromptsController < ApplicationController
   # POST /prompts
   def create
     @prompt = Prompt.new(prompt_params)
-    # assign the current logged in user as the prompt's author
-    @prompt.user_id = @current_user.id
+    # assign the current logged in user as the prompt's author unless anon is checked
+    if @prompt.anon
+      @prompt.user_id = 1
+    else @prompt.user_id = @current_user.id end
     # separate the prompt's tags by commas
     prompt_tags = @prompt.tagged_as.strip.split(',')
     for tag in prompt_tags
@@ -77,6 +79,6 @@ class PromptsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def prompt_params
-      params.require(:prompt).permit(:title, :body, :tagged_as)
+      params.require(:prompt).permit(:title, :body, :tagged_as, :anon)
     end
 end

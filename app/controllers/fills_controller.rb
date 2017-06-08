@@ -41,12 +41,13 @@ class FillsController < ApplicationController
   # POST /fills
   def create
     @fill = Fill.new(fill_params)
-    # assign the current logged in user as the fill's author
-    @fill.user_id = @current_user.id
+    # assign the current logged in user as the prompt's author unless anon is checked
+    if @fill.anon
+      @fill.user_id = 1
+    else @fill.user_id = @current_user.id end
     prompt = Prompt.find_by(id: @fill.prompt_id)
     @fill.prompt = prompt
     @fill.tags << prompt.tags
-    puts "FILL: #{@fill.prompt_id}"
     fill_tags = @fill.tagged_as.strip.split(',')
     for tag in fill_tags
       tag.strip!
@@ -88,6 +89,6 @@ class FillsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def fill_params
-      params.require(:fill).permit(:prompt_id, :body, :title, :tagged_as)
+      params.require(:fill).permit(:prompt_id, :body, :title, :tagged_as, :anon)
     end
 end

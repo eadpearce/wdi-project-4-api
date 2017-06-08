@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20170606082823) do
     t.bigint "fill_id"
     t.bigint "prompt_id"
     t.bigint "user_id"
+    t.boolean "anon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["fill_id"], name: "index_comments_on_fill_id"
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 20170606082823) do
     t.string "title"
     t.text "body"
     t.text "tagged_as"
+    t.boolean "anon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["prompt_id"], name: "index_fills_on_prompt_id"
@@ -49,6 +51,7 @@ ActiveRecord::Schema.define(version: 20170606082823) do
     t.text "body"
     t.bigint "user_id"
     t.text "tagged_as"
+    t.boolean "anon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_prompts_on_user_id"
