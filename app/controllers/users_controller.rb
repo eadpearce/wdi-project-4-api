@@ -28,6 +28,10 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
+    if user_params[:password].blank?
+      user_params.delete(:password)
+      user_params.delete(:password_confirmation)
+    end
     if @user.update(user_params)
       render json: @user
     else
@@ -48,6 +52,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:username, :email, :image, :password_digest)
+      params.require(:user).permit(:username, :email, :image, :password_digest, :about)
     end
 end
