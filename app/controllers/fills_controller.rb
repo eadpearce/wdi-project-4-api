@@ -47,10 +47,6 @@ class FillsController < ApplicationController
     else @fill.user_id = @current_user.id end
     prompt = Prompt.find_by(id: @fill.prompt_id)
     @fill.prompt = prompt
-    # inherit tags
-    for tag in prompt.tags
-      @fill.tags << tag unless ['general', 'mature', 'teen', 'explicit'].include? tag.name
-    end
     fill_tags = @fill.tagged_as.strip.split(',')
     for tag in fill_tags
       tag.strip!

@@ -59,7 +59,18 @@ class PromptsController < ApplicationController
 
   # PATCH/PUT /prompts/1
   def update
+    prompt_tags = @prompt.tagged_as.strip.split(',')
+    for tag in prompt_tags
+      tag.strip!
+    end
     if @prompt.update(prompt_params)
+      for tag in prompt_tags
+        # change to lowercase to avoid duplicates with odd cases
+        tag.downcase!
+        # avoid creating duplicates with the same name
+        new_tag = Tag.find_or_create_by(name: tag)
+        @prompt.tags << new_tag unless @prompt.tags.include?(new_tag)
+      end
       render json: @prompt
     else
       render json: @prompt.errors, status: :unprocessable_entity
