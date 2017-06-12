@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170606082823) do
     t.text "body"
     t.text "tagged_as"
     t.boolean "anon"
+    t.string "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["prompt_id"], name: "index_fills_on_prompt_id"
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 20170606082823) do
     t.bigint "user_id"
     t.text "tagged_as"
     t.boolean "anon"
+    t.string "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_prompts_on_user_id"

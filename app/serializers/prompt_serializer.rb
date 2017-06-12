@@ -1,16 +1,9 @@
 class PromptSerializer < ActiveModel::Serializer
-  attributes :id, :title, :body, :date_created, :created_at, :filled, :unfilled, :tags
+  attributes :id, :title, :body, :date_created, :created_at, :filled, :unfilled, :tags, :rating
   has_one :user
   # has_many :tags # returns all the nested shit as well
   has_many :fills
   has_many :comments
-
-  def date_created
-    require 'date'
-    date = object.created_at
-    formatted_date = date.strftime('%c')
-    formatted_date
-  end
 
   def filled
     if object.fills.length != 0

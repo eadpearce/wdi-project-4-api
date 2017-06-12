@@ -7,6 +7,7 @@ class CreateFills < ActiveRecord::Migration[5.1]
       t.text :body
       t.text :tagged_as
       t.boolean :anon
+      t.string :rating
 
       t.timestamps
     end

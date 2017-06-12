@@ -27,7 +27,7 @@ class PromptsController < ApplicationController
 
   # GET /prompts/1
   def show
-    render json: @prompt, include: ['fills', 'user', 'comments', 'comments.user']
+    render json: @prompt, include: ['fills', 'fills.user', 'user', 'comments', 'comments.user']
   end
 
   # POST /prompts
@@ -79,6 +79,6 @@ class PromptsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def prompt_params
-      params.require(:prompt).permit(:title, :body, :tagged_as, :anon)
+      params.require(:prompt).permit(:title, :body, :tagged_as, :anon, :rating)
     end
 end

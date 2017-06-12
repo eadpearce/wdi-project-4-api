@@ -6,6 +6,7 @@ class CreatePrompts < ActiveRecord::Migration[5.1]
       t.references :user, foreign_key: true
       t.text :tagged_as
       t.boolean :anon
+      t.string :rating
 
       t.timestamps
     end

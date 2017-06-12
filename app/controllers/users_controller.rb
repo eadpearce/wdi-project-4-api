@@ -11,14 +11,13 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    @user = User.find_by(username: params[:username])
     render json: @user, include: ['prompts', 'prompts.tags', 'fills', 'fills.tags']
   end
 
   # POST /users
   def create
     @user = User.new(user_params)
-    @user.username.downcase! 
+    @user.username = @user.username.downcase
     if @user.save
       render json: @user, status: :created, location: @user
     else
