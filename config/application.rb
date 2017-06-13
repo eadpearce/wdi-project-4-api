@@ -12,6 +12,8 @@ require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
+require "/lib/auth.rb"
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -35,6 +37,7 @@ module WdiProject4Api
         resource '*', :headers => :any, :methods => [:get, :post, :options, :put, :patch, :delete, :head]
       end
     end
-    config.autoload_paths << Rails.root.join('lib')
+    # config.autoload_paths << Rails.root.join('lib')
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end
