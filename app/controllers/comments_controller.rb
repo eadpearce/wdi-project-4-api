@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     if @comment.anon
-      @comment.user_id = 1
+      @comment.user_id = nil
     else @comment.user_id = @current_user.id end
 
     if @comment.save

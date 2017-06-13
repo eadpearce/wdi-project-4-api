@@ -43,10 +43,8 @@ class FillsController < ApplicationController
     @fill = Fill.new(fill_params)
     # assign the current logged in user as the prompt's author unless anon is checked
     if @fill.anon
-      @fill.user_id = 1
+      @fill.user_id = nil
     else @fill.user_id = @current_user.id end
-    prompt = Prompt.find_by(id: @fill.prompt_id)
-    @fill.prompt = prompt
     fill_tags = @fill.tagged_as.strip.split(',')
     for tag in fill_tags
       tag.strip!

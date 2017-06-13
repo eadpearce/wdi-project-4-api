@@ -1,7 +1,7 @@
 class Comment < ApplicationRecord
   belongs_to :fill, optional: true
   belongs_to :prompt, optional: true
-  belongs_to :user
+  belongs_to :user, optional: true
   validates :body, presence: true
 
   def date_created

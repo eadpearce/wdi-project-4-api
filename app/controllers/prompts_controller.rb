@@ -35,7 +35,7 @@ class PromptsController < ApplicationController
     @prompt = Prompt.new(prompt_params)
     # assign the current logged in user as the prompt's author unless anon is checked
     if @prompt.anon
-      @prompt.user_id = 1
+      @prompt.user_id = nil
     else @prompt.user_id = @current_user.id end
     # separate the prompt's tags by commas
     prompt_tags = @prompt.tagged_as.strip.split(',')
