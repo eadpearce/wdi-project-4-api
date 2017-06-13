@@ -1,7 +1,7 @@
-require 'jwt'
+require "jwt"
 
 class Auth
-  ALGORITHM = 'HS256'
+  ALGORITHM = "HS256"
 
   def self.issue(payload, expiry=24.hours.from_now)
     payload[:exp] = expiry.to_i
