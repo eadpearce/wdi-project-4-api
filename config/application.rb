@@ -35,7 +35,7 @@ module WdiProject4Api
         resource '*', :headers => :any, :methods => [:get, :post, :options, :put, :patch, :delete, :head]
       end
     end
-    # config.autoload_paths << Rails.root.join('lib')
+    config.autoload_paths << Rails.root.join('lib')
     # config.autoload_paths += %W(#{config.root}/lib)
   end
 end
